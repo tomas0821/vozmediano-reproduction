@@ -6,6 +6,9 @@
 \usepackage{booktabs}
 \usepackage{physics}
 \usepackage{siunitx}
+\usepackage{caption}
+
+\graphicspath{{./figures/}}
 
 \geometry{margin=1in}
 
@@ -214,6 +217,13 @@ For arbitrary $z(r)$ with $f(r) = [z'(r)]^2$:
     \tag{Eq. 14}
 \end{equation}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{velocity_analysis.png}
+    \caption{Effective Fermi velocity analysis for the Gaussian bump. \textbf{Top left}: Spatial profile of $\tilde{v}_r(r)/v_F$ showing maximum reduction at the steepest slope ($r = b/\sqrt{2}$). \textbf{Top right}: Anisotropy between radial ($v_r$) and angular ($v_\theta$) velocity components. \textbf{Bottom}: 2D colormap showing the ring-shaped velocity reduction around the bump center. Parameters: $A = 1.0$ nm, $b = 5.0$ nm, $\epsilon=0.04$, max reduction $\approx 1.44\%$.}
+    \label{fig:velocity_analysis}
+\end{figure}
+
 \subsection{Effective Magnetic Field (Eq. 15)}
 
 \subsubsection{Step 1: Magnetic field from 2D gauge field}
@@ -250,6 +260,13 @@ Substitute $f(r) = 4\epsilon \frac{r^2}{b^2} e^{-2r^2/b^2}$ and $f'(r) = 8\epsil
 \begin{equation}
     B_z(r) = \frac{2\epsilon}{b^2} \frac{\left(1 - \frac{2r^2}{b^2}\right) e^{-2r^2/b^2}}{\left[1 + 4\epsilon \frac{r^2}{b^2} e^{-2r^2/b^2}\right]^{3/2}}
 \end{equation}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{functional_form_analysis.png}
+    \caption{Functional form of the effective magnetic field $B_z(r)$ and related quantities for the Gaussian bump ($A=1.0$ nm, $b=5.0$ nm, $\epsilon = 0.04$). The field changes sign at $r = b/\sqrt{2}$ and integrates to zero total flux, as required by the absence of magnetic monopoles.}
+    \label{fig:functional_form}
+\end{figure}
 
 \subsection{LDOS Correction (Not explicitly numbered)}
 
@@ -304,6 +321,13 @@ where $K(r, r')$ is a kernel from angular average of $G_0 G_0$.
     \delta\rho(E_F, r) \propto \frac{1}{r^2} \left(1 - \frac{r^2}{2\sigma^2}\right) e^{-r^2/2\sigma^2}
 \end{equation}
 with $\sigma = b/\sqrt{2}$.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{ldos_comparison.png}
+    \caption{LDOS correction for the Gaussian bump. The left panel shows the functional dependence $\delta\rho(r)$, with a positive correction near the center ($r < \sigma$), a zero crossing at $r = b/\sqrt{2}$, and a negative ring further out. The right panel compares the LDOS correction (scaled) with the effective magnetic field $B_z$, showing the strong correlation between curvature and LDOS modulation. Parameters: $A = 1.0$ nm, $b = 5.0$ nm.}
+    \label{fig:ldos_comparison}
+\end{figure}
 
 \section{Topological Defects}
 
@@ -464,6 +488,20 @@ where $\xi$ is correlation length ($\sim 1$ nm).
     \item Pentagon: $\eta > 0$ $\Rightarrow$ $\delta\rho > 0$ (enhancement)
     \item Heptagon: $\eta < 0$ $\Rightarrow$ $\delta\rho < 0$ (depression)
 \end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{pentagon_vs_heptagon.png}
+    \caption{Comparison of LDOS corrections for a pentagon ($\eta > 0$, left) and a heptagon ($\eta < 0$, right). Pentagon defects enhance the local electron density (positive $\delta\rho$) while heptagon defects depress it (negative $\delta\rho$). The magnitude decays as $\sim e^{-r/\xi}/r$ with correlation length $\xi \sim 1$ nm. Results are consistent with the paper's conclusion and prior DFT simulations of nanocones.}
+    \label{fig:pentagon_vs_heptagon}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{multiple_defects.png}
+    \caption{Superposition of multiple topological defects showing the combined charge density modulation $\delta\rho(x,y)$. Positive (pentagon) and negative (heptagon) contributions add linearly in the perturbative regime, producing a complex spatial pattern of electron-rich and electron-depleted regions. This demonstrates how random defect distributions can create charge puddles similar to those observed in experiments.}
+    \label{fig:multiple_defects}
+\end{figure}
 
 \section{Key Insights and Verification}
 

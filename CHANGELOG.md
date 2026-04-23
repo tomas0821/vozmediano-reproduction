@@ -54,6 +54,8 @@ The analytical reproduction is **~80% complete**. DFT verification is **not star
 3. ✓ Verified topological defects results: pentagon enhancement / heptagon depression confirmed
 4. ✓ Identified the LDOS calculation has a slight mismatch (zero crossing at 4.94 nm vs expected 3.54 nm)
 5. ✓ CHANGELOG initialized as lab notebook
-
-### Open Questions for the User
-The project is in a good state — analytical reproduction ~80% complete, DFT not started. Ready for direction on next priority.
+6. ✓ **Git repo created and pushed to GitHub**: https://github.com/tomas0821/vozmediano-reproduction
+   - Cleaned up nested duplicate directory, stray files
+   - Proper .gitignore (PDFs excluded, data artifacts excluded)
+   - Paper PDF excluded (copyright) — arxiv link in README instead
+   - 69 files, 13k+ lines committed
