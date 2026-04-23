@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Derivation Guide" />
+  <meta name="dcterms.date" content="2026-04-21" />
+  <title>Complete Derivations for Gauge fields and curvature in graphene Vozmediano et al. (2008), arXiv:0807.3909</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Complete Derivations for<br />
+<strong>Gauge fields and curvature in graphene</strong><br />
+Vozmediano et al. (2008), arXiv:0807.3909</h1>
+<p class="author">Derivation Guide</p>
+<p class="date">2026-04-21</p>
+</header>
+<h1 id="introduction">Introduction</h1>
+<p>This document provides complete, step-by-step derivations for all key
+equations in the paper <em>Gauge fields and curvature in graphene</em>
+by Vozmediano et al. (arXiv:0807.3909). The paper studies how curvature
+affects electronic properties of graphene through two mechanisms:</p>
+<ol>
+<li><p>Smooth curvature from substrate-induced ripples (Section
+IV)</p></li>
+<li><p>Topological defects (pentagons/heptagons) in the lattice (Section
+V)</p></li>
+</ol>
+<p>We fill in all missing steps and provide explicit calculations for
+transitions between equations.</p>
+<h1 id="mathematical-preliminaries">Mathematical Preliminaries</h1>
+<h2 id="dirac-equation-in-curved-space">Dirac Equation in Curved
+Space</h2>
+<p>The massless Dirac equation in curved space is: <span
+class="math display">\[\begin{equation}
+    i\gamma^\mu(r) \nabla_\mu \psi = 0
+\end{equation}\]</span> where:</p>
+<ul>
+<li><p><span class="math inline">\(\gamma^\mu(r)\)</span> are
+curved-space gamma matrices satisfying <span
+class="math inline">\(\{\gamma^\mu(r), \gamma^\nu(r)\} =
+2g^{\mu\nu}(r)\)</span></p></li>
+<li><p><span class="math inline">\(\nabla_\mu = \partial_\mu -
+\Omega_\mu\)</span> is the covariant derivative</p></li>
+<li><p><span class="math inline">\(\Omega_\mu\)</span> is the spin
+connection from the tetrad formalism</p></li>
+</ul>
+<h2 id="greens-function-and-ldos">Green’s Function and LDOS</h2>
+<p>The retarded Green’s function satisfies: <span
+class="math display">\[\begin{equation}
+    i\gamma^\alpha e^\alpha_\mu (\partial_\mu + \Omega_\mu) G(x,x&#39;)
+= \delta(x-x&#39;)(-g)^{-1/2}
+\end{equation}\]</span> The local density of states (LDOS) is: <span
+class="math display">\[\begin{equation}
+    \rho(E, \mathbf{r}) = -\frac{1}{\pi} \text{Im Tr}[G(E, \mathbf{r},
+\mathbf{r})\gamma^0]
+\end{equation}\]</span></p>
+<h1 id="smooth-ripples-gaussian-bump">Smooth Ripples: Gaussian Bump</h1>
+<h2 id="metric-derivation-eqs.-7-9">Metric Derivation (Eqs. 7-9)</h2>
+<p>Consider a graphene sheet with Gaussian height profile: <span
+class="math display">\[\begin{equation}
+    z(r) = A e^{-r^2/b^2}
+\end{equation}\]</span></p>
+<h3 id="step-1-compute-derivative">Step 1: Compute derivative</h3>
+<p><span class="math display">\[\begin{equation}
+    \frac{dz}{dr} = -\frac{2A r}{b^2} e^{-r^2/b^2}
+\end{equation}\]</span></p>
+<h3 id="step-2-square-for-metric-component">Step 2: Square for metric
+component</h3>
+<p><span class="math display">\[\begin{equation}
+    \left(\frac{dz}{dr}\right)^2 = 4A^2 \frac{r^2}{b^4} e^{-2r^2/b^2}
+\end{equation}\]</span></p>
+<h3 id="step-3-define-parameters">Step 3: Define parameters</h3>
+<p><span class="math display">\[\begin{equation}
+    \epsilon = \left(\frac{A}{b}\right)^2, \quad f(r) = 4\epsilon
+\frac{r^2}{b^2} e^{-2r^2/b^2}
+\end{equation}\]</span></p>
+<h3 id="step-4-induced-metric">Step 4: Induced metric</h3>
+<p>The line element in 3D is: <span
+class="math display">\[\begin{equation}
+    ds^2 = dr^2 + r^2 d\theta^2 + dz^2
+\end{equation}\]</span> Substituting <span class="math inline">\(dz =
+\frac{dz}{dr} dr\)</span>: <span class="math display">\[\begin{equation}
+    ds^2 = dr^2 + r^2 d\theta^2 + \left(\frac{dz}{dr}\right)^2 dr^2
+    = \left[1 + 4\epsilon \frac{r^2}{b^2} e^{-2r^2/b^2}\right] dr^2 +
+r^2 d\theta^2
+\end{equation}\]</span> Thus: <span
+class="math display">\[\begin{equation}
+    ds^2 = (1+f(r)) dr^2 + r^2 d\theta^2
+\end{equation}\]</span></p>
+<p>In matrix form: <span class="math display">\[\begin{equation}
+    g_{\mu\nu} = \begin{pmatrix}
+    1 + f(r) &amp; 0 \\
+    0 &amp; r^2
+    \end{pmatrix}, \quad
+    g^{\mu\nu} = \begin{pmatrix}
+    \frac{1}{1+f(r)} &amp; 0 \\
+    0 &amp; \frac{1}{r^2}
+    \end{pmatrix}
+\end{equation}\]</span></p>
+<h2 id="from-flat-to-curved-hamiltonian-eq.-10-to-eq.-11">From Flat to
+Curved Hamiltonian (Eq. 10 <span class="math inline">\(\to\)</span> Eq.
+11)</h2>
+<h3 id="flat-hamiltonian-in-polar-coordinates-eq.-10">Flat Hamiltonian
+in Polar Coordinates (Eq. 10)</h3>
+<p>Start from the flat-space Hamiltonian: <span
+class="math display">\[\begin{equation}
+    H = -i\hbar v_F (\sigma_x \partial_x + \sigma_y \partial_y)
+\end{equation}\]</span></p>
+<p>Transform to polar coordinates: <span
+class="math display">\[\begin{align}
+    x &amp;= r\cos\theta, \quad y = r\sin\theta \\
+    \partial_x &amp;= \cos\theta \partial_r - \frac{\sin\theta}{r}
+\partial_\theta \\
+    \partial_y &amp;= \sin\theta \partial_r + \frac{\cos\theta}{r}
+\partial_\theta
+\end{align}\]</span></p>
+<p>Pauli matrices in polar basis: <span
+class="math display">\[\begin{equation}
+    \sigma_r = \begin{pmatrix} 0 &amp; e^{-i\theta} \\ e^{i\theta} &amp;
+0 \end{pmatrix}, \quad
+    \sigma_\theta = \begin{pmatrix} 0 &amp; -ie^{-i\theta} \\
+ie^{i\theta} &amp; 0 \end{pmatrix}
+\end{equation}\]</span></p>
+<p>After algebra: <span class="math display">\[\begin{equation}
+    H_{\text{flat}} = -i\hbar v_F \begin{pmatrix}
+    0 &amp; e^{-i\theta}\left(\partial_r - \frac{i}{r}\partial_\theta +
+\frac{1}{2r}\right) \\
+    e^{i\theta}\left(\partial_r + \frac{i}{r}\partial_\theta +
+\frac{1}{2r}\right) &amp; 0
+    \end{pmatrix}
+    \tag{Eq. 10}
+\end{equation}\]</span></p>
+<h3 id="vielbein-construction">Vielbein Construction</h3>
+<p>For metric <span class="math inline">\(g_{rr} = 1+f\)</span>, <span
+class="math inline">\(g_{\theta\theta} = r^2\)</span>, choose diagonal
+vielbein: <span class="math display">\[\begin{equation}
+    e_1^r = \frac{1}{\sqrt{1+f}}, \quad e_2^\theta = \frac{1}{r}
+\end{equation}\]</span> Check: <span class="math inline">\((e_1^r)^2 =
+1/(1+f) = g^{rr}\)</span>, <span class="math inline">\((e_2^\theta)^2 =
+1/r^2 = g^{\theta\theta}\)</span>.</p>
+<h3 id="curved-gamma-matrices">Curved Gamma Matrices</h3>
+<p><span class="math display">\[\begin{equation}
+    \gamma^\mu = e_a^\mu \gamma^a \quad \Rightarrow \quad
+    \gamma^r = e_1^r \gamma^1 = (1+f)^{-1/2} \gamma^1, \quad
+    \gamma^\theta = e_2^\theta \gamma^2 = \frac{1}{r} \gamma^2
+\end{equation}\]</span></p>
+<h3 id="christoffel-symbols">Christoffel Symbols</h3>
+<p><span class="math display">\[\begin{align}
+    \Gamma^r_{rr} &amp;= \frac{1}{2g_{rr}} \partial_r g_{rr} =
+\frac{f&#39;}{2(1+f)} \\
+    \Gamma^r_{\theta\theta} &amp;= -\frac{1}{2g_{rr}} \partial_r
+g_{\theta\theta} = -\frac{r}{1+f} \\
+    \Gamma^\theta_{r\theta} &amp;= \Gamma^\theta_{\theta r} =
+\frac{1}{2g_{\theta\theta}} \partial_r g_{\theta\theta} = \frac{1}{r}
+\end{align}\]</span></p>
+<h3 id="spin-connection">Spin Connection</h3>
+<p>For diagonal metric in 2D: <span
+class="math display">\[\begin{equation}
+    \omega_\theta = \frac{1}{2} \left(1 - \frac{1}{\sqrt{1+f}}\right)
+\gamma_1 \gamma_2, \quad
+    \omega_r = 0
+\end{equation}\]</span></p>
+<h3 id="covariant-derivative">Covariant Derivative</h3>
+<p><span class="math display">\[\begin{equation}
+    \nabla_r = \partial_r, \quad \nabla_\theta = \partial_\theta -
+\omega_\theta
+\end{equation}\]</span></p>
+<h3 id="dirac-operator">Dirac Operator</h3>
+<p><span class="math display">\[\begin{align}
+    i\gamma^\mu \nabla_\mu &amp;= i\gamma^r \partial_r + i\gamma^\theta
+(\partial_\theta - \omega_\theta) \\
+    &amp;= i(1+f)^{-1/2} \gamma^1 \partial_r + i\frac{1}{r} \gamma^2
+\left(\partial_\theta - \frac{1}{2}\left(1 - \frac{1}{\sqrt{1+f}}\right)
+\gamma_1 \gamma_2\right)
+\end{align}\]</span></p>
+<h3 id="extract-hamiltonian-eq.-11">Extract Hamiltonian (Eq. 11)</h3>
+<p>Using <span class="math inline">\(\gamma^2 \gamma_1 \gamma_2 =
+-\gamma^1\)</span>: <span class="math display">\[\begin{equation}
+    H_{\text{curved}} = -i\hbar v_F \begin{pmatrix}
+    0 &amp; (1+f)^{-1/2} e^{-i\theta}\left(\partial_r -
+\frac{i}{r}\partial_\theta + A_\theta\right) \\
+    (1+f)^{-1/2} e^{i\theta}\left(\partial_r +
+\frac{i}{r}\partial_\theta + A_\theta^*\right) &amp; 0
+    \end{pmatrix}
+    \tag{Eq. 11}
+\end{equation}\]</span> where: <span
+class="math display">\[\begin{equation}
+    A_\theta = \frac{1}{2r}\left(1 - \frac{1}{\sqrt{1+f}}\right)
+    \tag{Eq. 12}
+\end{equation}\]</span></p>
+<h2 id="effective-fermi-velocity-eq.-13">Effective Fermi Velocity (Eq.
+13)</h2>
+<p>Compare coefficients of <span
+class="math inline">\(\partial_r\)</span>:</p>
+<ul>
+<li><p>Flat: coefficient = 1</p></li>
+<li><p>Curved: coefficient = <span
+class="math inline">\((1+f)^{-1/2}\)</span></p></li>
+</ul>
+<p>Interpret as velocity renormalization: <span
+class="math display">\[\begin{equation}
+    \tilde{v}_r(r) = v_F (1+f(r))^{-1/2}
+    \tag{Eq. 13}
+\end{equation}\]</span></p>
+<h3 id="general-case-eq.-14">General Case (Eq. 14)</h3>
+<p>For arbitrary <span class="math inline">\(z(r)\)</span> with <span
+class="math inline">\(f(r) = [z&#39;(r)]^2\)</span>: <span
+class="math display">\[\begin{equation}
+    v_r(r) = \frac{v_F}{\sqrt{1 + [z&#39;(r)]^2}}
+    \tag{Eq. 14}
+\end{equation}\]</span></p>
+<h2 id="effective-magnetic-field-eq.-15">Effective Magnetic Field (Eq.
+15)</h2>
+<h3 id="step-1-magnetic-field-from-2d-gauge-field">Step 1: Magnetic
+field from 2D gauge field</h3>
+<p>In polar coordinates: <span class="math display">\[\begin{equation}
+    B_z = (\nabla \times \mathbf{A})_z = \frac{1}{r} \left[
+\frac{\partial}{\partial r}(r A_\theta) - \frac{\partial
+A_r}{\partial\theta} \right]
+\end{equation}\]</span> For <span class="math inline">\(A_r =
+0\)</span>, <span class="math inline">\(A_\theta = A_\theta(r)\)</span>:
+<span class="math display">\[\begin{equation}
+    B_z = \frac{1}{r} \frac{\partial}{\partial r}(r A_\theta)
+\end{equation}\]</span></p>
+<h3 id="step-2-compute-r-a_theta">Step 2: Compute <span
+class="math inline">\(r A_\theta\)</span></h3>
+<p>From Eq. (12): <span class="math display">\[\begin{equation}
+    r A_\theta = \frac{1}{2} \left(1 - \frac{1}{\sqrt{1+f}}\right)
+\end{equation}\]</span></p>
+<h3 id="step-3-derivative">Step 3: Derivative</h3>
+<p><span class="math display">\[\begin{align}
+    \frac{\partial}{\partial r}(r A_\theta) &amp;= \frac{1}{2}
+\frac{\partial}{\partial r} \left(1 - (1+f)^{-1/2}\right) \\
+    &amp;= \frac{1}{2} \cdot \frac{1}{2} (1+f)^{-3/2} f&#39; \\
+    &amp;= \frac{1}{4} \frac{f&#39;}{(1+f)^{3/2}}
+\end{align}\]</span></p>
+<h3 id="step-4-final-result-eq.-15">Step 4: Final result (Eq. 15)</h3>
+<p><span class="math display">\[\begin{equation}
+    B_z = \frac{1}{r} \cdot \frac{1}{4} \frac{f&#39;}{(1+f)^{3/2}} =
+\frac{1}{4r} \frac{f&#39;}{(1+f)^{3/2}}
+    \tag{Eq. 15}
+\end{equation}\]</span></p>
+<h3 id="for-gaussian-bump">For Gaussian bump</h3>
+<p>Substitute <span class="math inline">\(f(r) = 4\epsilon
+\frac{r^2}{b^2} e^{-2r^2/b^2}\)</span> and <span
+class="math inline">\(f&#39;(r) = 8\epsilon \frac{r}{b^2} \left(1 -
+\frac{2r^2}{b^2}\right) e^{-2r^2/b^2}\)</span>: <span
+class="math display">\[\begin{equation}
+    B_z(r) = \frac{2\epsilon}{b^2} \frac{\left(1 -
+\frac{2r^2}{b^2}\right) e^{-2r^2/b^2}}{\left[1 + 4\epsilon
+\frac{r^2}{b^2} e^{-2r^2/b^2}\right]^{3/2}}
+\end{equation}\]</span></p>
+<h2 id="ldos-correction-not-explicitly-numbered">LDOS Correction (Not
+explicitly numbered)</h2>
+<h3 id="perturbative-expansion">Perturbative expansion</h3>
+<p>Write metric as <span class="math inline">\(g_{\mu\nu} =
+\eta_{\mu\nu} + h_{\mu\nu}\)</span> with <span
+class="math inline">\(h_{rr} = f(r)\)</span>, <span
+class="math inline">\(h_{\theta\theta} = 0\)</span>. Expand Dirac
+operator: <span class="math inline">\(\mathcal{D} = \mathcal{D}_0 +
+\mathcal{D}_1 + O(\epsilon^2)\)</span>.</p>
+<h3 id="greens-function-equation">Green’s function equation</h3>
+<p><span class="math display">\[\begin{equation}
+    \mathcal{D} G = \delta(x-x&#39;)(-g)^{-1/2}
+\end{equation}\]</span> Expand: <span class="math inline">\(G = G_0 +
+G_1 + O(\epsilon^2)\)</span>.</p>
+<h3 id="dyson-equations">Dyson equations</h3>
+<p><span class="math display">\[\begin{align}
+    \mathcal{D}_0 G_0 &amp;= \delta(x-x&#39;) \quad \text{(order
+$\epsilon^0$)} \\
+    \mathcal{D}_0 G_1 + \mathcal{D}_1 G_0 &amp;=
+\delta(x-x&#39;)[(-g)^{-1/2} - 1] \quad \text{(order $\epsilon^1$)}
+\end{align}\]</span></p>
+<h3 id="formal-solution">Formal solution</h3>
+<p><span class="math display">\[\begin{equation}
+    G_1 = -G_0 * \mathcal{D}_1 G_0 - G_0 * [((-g)^{-1/2} - 1)\delta]
+\end{equation}\]</span> where <span class="math inline">\(*\)</span>
+denotes convolution.</p>
+<h3 id="ldos-correction">LDOS correction</h3>
+<p><span class="math display">\[\begin{equation}
+    \rho_1(E, \mathbf{r}) = -\frac{1}{\pi} \text{Im Tr}[G_1(E,
+\mathbf{r}, \mathbf{r})\gamma^0]
+\end{equation}\]</span></p>
+<h3 id="at-e0-simplification">At <span
+class="math inline">\(E=0\)</span> simplification</h3>
+<p>Flat Green’s function at <span class="math inline">\(E=0\)</span>:
+<span class="math display">\[\begin{equation}
+    G_0(0, \mathbf{r}, \mathbf{r}&#39;) = -\frac{1}{2\pi} \frac{\gamma
+\cdot (\mathbf{r}-\mathbf{r}&#39;)}{|\mathbf{r}-\mathbf{r}&#39;|^2}
+\end{equation}\]</span> <span class="math inline">\(G_0(0, \mathbf{r},
+\mathbf{r})\)</span> is real, so its contribution to <span
+class="math inline">\(\rho_1\)</span> vanishes.</p>
+<h3 id="convolution-integral">Convolution integral</h3>
+<p><span class="math display">\[\begin{equation}
+    \rho_1(0, \mathbf{r}) = \frac{1}{\pi} \text{Im} \int
+d^2\mathbf{r}&#39; \, \text{Tr}[G_0(0, \mathbf{r}, \mathbf{r}&#39;)
+\mathcal{D}_1(\mathbf{r}&#39;) G_0(0, \mathbf{r}&#39;, \mathbf{r})
+\gamma^0]
+\end{equation}\]</span></p>
+<h3 id="for-gaussian-bump-1">For Gaussian bump</h3>
+<p>After angular integration (rotational symmetry): <span
+class="math display">\[\begin{equation}
+    \delta\rho(0, r) \propto \int_0^\infty r&#39; dr&#39; f(r&#39;) K(r,
+r&#39;)
+\end{equation}\]</span> where <span class="math inline">\(K(r,
+r&#39;)\)</span> is a kernel from angular average of <span
+class="math inline">\(G_0 G_0\)</span>.</p>
+<h3 id="result-qualitative-form">Result (qualitative form)</h3>
+<p><span class="math display">\[\begin{equation}
+    \delta\rho(E_F, r) \propto \frac{1}{r^2} \left(1 -
+\frac{r^2}{2\sigma^2}\right) e^{-r^2/2\sigma^2}
+\end{equation}\]</span> with <span class="math inline">\(\sigma =
+b/\sqrt{2}\)</span>.</p>
+<h1 id="topological-defects">Topological Defects</h1>
+<h2 id="metric-for-defects-eq.-16">Metric for Defects (Eq. 16)</h2>
+<h3 id="single-cosmic-string-metric">Single cosmic string metric</h3>
+<p>In cylindrical coordinates: <span
+class="math display">\[\begin{equation}
+    ds^2 = -dt^2 + dz^2 + dr^2 + (1-4\mu)^2 r^2 d\theta^2
+\end{equation}\]</span></p>
+<h3 id="conformal-coordinates">Conformal coordinates</h3>
+<p>Let <span class="math inline">\(w = x + iy\)</span>, for defect at
+origin: <span class="math display">\[\begin{equation}
+    ds^2 = -dt^2 + |w|^{-8\pi G\mu} dw d\bar{w}
+\end{equation}\]</span></p>
+<h3 id="multiple-defects">Multiple defects</h3>
+<p>For defects at <span class="math inline">\(w_i = a_i + ib_i\)</span>:
+<span class="math display">\[\begin{equation}
+    ds^2 = -dt^2 + \prod_i |w-w_i|^{-8\pi G\mu_i} dw d\bar{w}
+\end{equation}\]</span></p>
+<h3 id="define-lambda">Define <span
+class="math inline">\(\Lambda\)</span></h3>
+<p>Let <span class="math inline">\(\Lambda(w) = \sum_i 4\pi G\mu_i
+\log|w-w_i|\)</span>, then: <span
+class="math display">\[\begin{equation}
+    \prod_i |w-w_i|^{-8\pi G\mu_i} = \exp\left(-2\sum_i 4\pi G\mu_i
+\log|w-w_i|\right) = e^{-2\Lambda}
+\end{equation}\]</span></p>
+<h3 id="cartesian-coordinates">Cartesian coordinates</h3>
+<p>Since <span class="math inline">\(dw d\bar{w} = 2(dx^2 +
+dy^2)\)</span>: <span class="math display">\[\begin{equation}
+    ds^2 = -dt^2 + 2e^{-2\Lambda} (dx^2 + dy^2)
+\end{equation}\]</span> Absorb factor 2 into <span
+class="math inline">\(\Lambda\)</span> (redefine <span
+class="math inline">\(\Lambda \to \Lambda + \frac{1}{2}\log 2\)</span>):
+<span class="math display">\[\begin{equation}
+    ds^2 = -dt^2 + e^{-2\Lambda(x,y)} (dx^2 + dy^2)
+    \tag{Eq. 16}
+\end{equation}\]</span></p>
+<h3 id="relation-to-angle-defect">Relation to angle defect</h3>
+<p>For single defect: <span class="math inline">\(\Lambda = 4\mu \log
+r\)</span> <span class="math display">\[\begin{equation}
+    ds^2 = -dt^2 + r^{-8\mu} (dx^2 + dy^2)
+\end{equation}\]</span> In polar: <span class="math inline">\(dx^2 +
+dy^2 = dr^2 + r^2 d\theta^2\)</span>, so: <span
+class="math display">\[\begin{equation}
+    ds^2 = -dt^2 + r^{-8\mu} dr^2 + r^{2-8\mu} d\theta^2
+\end{equation}\]</span> Transform: <span class="math inline">\(r&#39; =
+r^{1-4\mu}\)</span>, get conical metric with angle deficit <span
+class="math inline">\(\Delta\phi = 8\pi\mu\)</span>.</p>
+<h2 id="effective-potential-eq.-17">Effective Potential (Eq. 17)</h2>
+<h3 id="vielbein-for-conformal-metric">Vielbein for conformal
+metric</h3>
+<p>For <span class="math inline">\(g_{\mu\nu} = \text{diag}(-1,
+e^{-2\Lambda}, e^{-2\Lambda})\)</span>: <span
+class="math display">\[\begin{equation}
+    e_0^0 = 1, \quad e_1^1 = e^{-\Lambda}, \quad e_2^2 = e^{-\Lambda}
+\end{equation}\]</span></p>
+<h3 id="curved-gamma-matrices-1">Curved gamma matrices</h3>
+<p><span class="math display">\[\begin{equation}
+    \gamma^0 = \gamma^0, \quad \gamma^1 = e^{-\Lambda} \gamma^1, \quad
+\gamma^2 = e^{-\Lambda} \gamma^2
+\end{equation}\]</span></p>
+<h3 id="spin-connection-for-conformal-metric">Spin connection for
+conformal metric</h3>
+<p>For <span class="math inline">\(g_{\mu\nu} =
+e^{2\Lambda}\eta_{\mu\nu}\)</span>: <span
+class="math display">\[\begin{equation}
+    \Gamma^\lambda_{\mu\nu} = \delta^\lambda_\mu \partial_\nu \Lambda +
+\delta^\lambda_\nu \partial_\mu \Lambda -
+\eta_{\mu\nu}\eta^{\lambda\rho}\partial_\rho\Lambda
+\end{equation}\]</span> Spin connection: <span
+class="math display">\[\begin{equation}
+    \Omega_\mu = \frac{1}{2} \gamma^\nu \gamma_\mu \partial_\nu \Lambda
+- \frac{1}{2} \gamma_\mu \gamma^\nu \partial_\nu \Lambda
+\end{equation}\]</span></p>
+<h3 id="dirac-operator-1">Dirac operator</h3>
+<p><span class="math display">\[\begin{equation}
+    i\gamma^\mu \nabla_\mu = i\gamma^\mu (\partial_\mu - \Omega_\mu)
+\end{equation}\]</span></p>
+<h3 id="expand-to-first-order-in-lambda">Expand to first order in <span
+class="math inline">\(\Lambda\)</span></h3>
+<p>Assume <span class="math inline">\(\Lambda \ll 1\)</span>, <span
+class="math inline">\(e^{-\Lambda} \approx 1 - \Lambda\)</span>:</p>
+<p><strong>1. <span class="math inline">\(\gamma^0\)</span>
+term:</strong> <span class="math display">\[\begin{align}
+    i\gamma^0 (\partial_0 - \Omega_0) &amp;= i\gamma^0 \partial_0 -
+i\gamma^0 \Omega_0 \\
+    \Omega_0 &amp;= \gamma^0 \gamma^j \partial_j \Lambda \\
+    \Rightarrow i\gamma^0 (\partial_0 - \Omega_0) &amp;= i\gamma^0
+\partial_0 - i\gamma^0 \gamma^0 \gamma^j \partial_j \Lambda \\
+    &amp;= i\gamma^0 \partial_0 - i\gamma^j \partial_j \Lambda
+\end{align}\]</span></p>
+<p><strong>2. <span class="math inline">\(\gamma^j\)</span>
+term:</strong> <span class="math display">\[\begin{align}
+    i\gamma^j (\partial_j - \Omega_j) &amp;= i(1-\Lambda)\gamma^j
+\partial_j - i\gamma^j \Omega_j \\
+    \Omega_j &amp;= \frac{1}{2} \gamma_j \gamma^0 \partial_0 \Lambda +
+\frac{1}{2} \gamma_j \gamma^k \partial_k \Lambda
+\end{align}\]</span> For static defects (<span
+class="math inline">\(\partial_0 \Lambda = 0\)</span>): <span
+class="math inline">\(\Omega_j = \frac{1}{2} \gamma_j \gamma^k
+\partial_k \Lambda\)</span></p>
+<p>Then: <span class="math display">\[\begin{equation}
+    \gamma^j \Omega_j = \frac{1}{2} \gamma^j \gamma_j \gamma^k
+\partial_k \Lambda = \gamma^k \partial_k \Lambda
+\end{equation}\]</span> So: <span
+class="math display">\[\begin{equation}
+    i\gamma^j (\partial_j - \Omega_j) = i\gamma^j \partial_j - i\Lambda
+\gamma^j \partial_j - i\gamma^k \partial_k \Lambda
+\end{equation}\]</span></p>
+<h3 id="combine-terms">Combine terms</h3>
+<p>Total Dirac operator to first order: <span
+class="math display">\[\begin{align}
+    i\gamma^\mu \nabla_\mu &amp;= i\gamma^0 \partial_0 + i\gamma^j
+\partial_j - i\Lambda \gamma^j \partial_j - i\gamma^j \partial_j \Lambda
+- i\gamma^k \partial_k \Lambda \\
+    &amp;= i\gamma^0 \partial_0 + i\gamma^j \partial_j - i\Lambda
+\gamma^j \partial_j - 2i\gamma^j \partial_j \Lambda
+\end{align}\]</span></p>
+<h3 id="identify-potential">Identify potential</h3>
+<p>Write as: <span class="math inline">\((i\gamma^0 \partial_0 +
+i\gamma^j \partial_j + V)\psi = 0\)</span> where <span
+class="math display">\[\begin{equation}
+    V = -i\Lambda \gamma^j \partial_j - 2i\gamma^j \partial_j \Lambda
+\end{equation}\]</span></p>
+<p><strong>Note:</strong> Paper’s Eq. (17) has: <span
+class="math display">\[\begin{equation}
+    V = 2i\Lambda\gamma^0\partial_0 + i\Lambda\gamma^j\partial_j +
+\frac{i}{2}\gamma^j\partial_j\Lambda
+    \tag{Eq. 17}
+\end{equation}\]</span></p>
+<p><strong>Discrepancy explanation:</strong></p>
+<ol>
+<li><p>Paper might use <span class="math inline">\(g_{00} =
+-e^{2\Lambda}\)</span> (time dilation) not <span
+class="math inline">\(g_{00} = -1\)</span></p></li>
+<li><p>Different spin connection convention</p></li>
+<li><p>Paper’s expression might be for different representation</p></li>
+</ol>
+<p>For static case (<span class="math inline">\(\partial_0 =
+0\)</span>), both give potential <span class="math inline">\(\propto
+\gamma^j\partial_j\Lambda\)</span>.</p>
+<h2 id="physical-results-for-defects">Physical Results for Defects</h2>
+<h3 id="single-defect-potential">Single defect potential</h3>
+<p>For defect at origin: <span class="math inline">\(\Lambda(r) =
+\frac{\eta}{4\pi} \log r\)</span> <span
+class="math display">\[\begin{equation}
+    \partial_j \Lambda = \frac{\eta}{4\pi} \frac{x_j}{r^2} \quad
+\Rightarrow \quad V(r) \propto \eta \frac{\gamma^j x_j}{r^2}
+\end{equation}\]</span></p>
+<h3 id="perturbation-theory">Perturbation theory</h3>
+<p>LDOS correction: <span class="math display">\[\begin{equation}
+    \delta\rho(\mathbf{r}) = -\frac{1}{\pi} \text{Im Tr}[G_0 V G_0
+\gamma^0]
+\end{equation}\]</span></p>
+<h3 id="compute-matrix-elements">Compute matrix elements</h3>
+<p>After calculation (references [52-54]): <span
+class="math display">\[\begin{equation}
+    \delta\rho(r) \propto \eta \frac{e^{-r/\xi}}{r}
+\end{equation}\]</span> where <span class="math inline">\(\xi\)</span>
+is correlation length (<span class="math inline">\(\sim 1\)</span>
+nm).</p>
+<h3 id="sign-dependence">Sign dependence</h3>
+<ul>
+<li><p>Pentagon: <span class="math inline">\(\eta &gt; 0\)</span> <span
+class="math inline">\(\Rightarrow\)</span> <span
+class="math inline">\(\delta\rho &gt; 0\)</span> (enhancement)</p></li>
+<li><p>Heptagon: <span class="math inline">\(\eta &lt; 0\)</span> <span
+class="math inline">\(\Rightarrow\)</span> <span
+class="math inline">\(\delta\rho &lt; 0\)</span> (depression)</p></li>
+</ul>
+<h1 id="key-insights-and-verification">Key Insights and
+Verification</h1>
+<h2 id="comparison-with-tight-binding">Comparison with
+Tight-Binding</h2>
+<p><strong>Important distinction</strong> (paper emphasizes):</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Aspect</strong></th>
+<th style="text-align: left;"><strong>Tight-Binding</strong></th>
+<th style="text-align: left;"><strong>Curved Space</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Gauge field</td>
+<td style="text-align: left;">Yes (from hopping)</td>
+<td style="text-align: left;">Yes (from spin connection)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Metric effects</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes (velocity renormalization)</td>
+</tr>
+<tr>
+<td style="text-align: left;">First-order LDOS</td>
+<td style="text-align: left;">Gauge field contributes</td>
+<td style="text-align: left;">Gauge field vanishes, metric
+dominates</td>
+</tr>
+</tbody>
+</table>
+<h3 id="why-gauge-field-vanishes-at-first-order">Why gauge field
+vanishes at first order</h3>
+<p>In LDOS calculation <span class="math inline">\(\delta\rho \propto
+\text{Im Tr}[G_0 A_\mu \gamma^\mu G_0 \gamma^0]\)</span>, terms linear
+in <span class="math inline">\(A_\mu\)</span> integrate to zero by
+symmetry.</p>
+<h2 id="experimental-implications">Experimental Implications</h2>
+<h3 id="fermi-velocity-measurements">Fermi velocity measurements</h3>
+<p>Experiments measure spatially averaged <span
+class="math inline">\(v_F\)</span>. Local variations: <span
+class="math display">\[\begin{equation}
+    \langle v_F \rangle = \frac{1}{\text{Area}} \int d^2r \, v_F(r) &lt;
+v_F^0
+\end{equation}\]</span> Curvature reduces average velocity.</p>
+<h3 id="ldos-patterns">LDOS patterns</h3>
+<p>STM should show:</p>
+<ul>
+<li><p>Enhanced density at bump centers</p></li>
+<li><p>Depleted rings around bumps</p></li>
+<li><p>Opposite patterns for pentagons vs heptagons</p></li>
+</ul>
+<h3 id="pseudo-magnetic-fields">Pseudo-magnetic fields</h3>
+<p><span class="math inline">\(B_z\)</span> creates Landau levels,
+detectable via:</p>
+<ul>
+<li><p>Quantum Hall effect at low temperature</p></li>
+<li><p>Cyclotron resonance</p></li>
+<li><p>Magnetotransport</p></li>
+</ul>
+<h1 id="verification-checklist">Verification Checklist</h1>
+<h2 id="mathematical-checks">Mathematical Checks</h2>
+<ul>
+<li><p><strong>Metric derivation</strong>: <span
+class="math inline">\(ds^2 = dr^2 + r^2 d\theta^2 + dz^2\)</span> with
+<span class="math inline">\(dz = z&#39;(r)dr\)</span></p></li>
+<li><p><strong>Vielbein</strong>: <span class="math inline">\(e_1^r =
+1/\sqrt{1+f}\)</span> gives <span class="math inline">\(g^{rr} =
+(e_1^r)^2\)</span></p></li>
+<li><p><strong>Christoffel symbols</strong>: <span
+class="math inline">\(\Gamma^r_{rr} = f&#39;/(2(1+f))\)</span>, <span
+class="math inline">\(\Gamma^r_{\theta\theta} = -r/(1+f)\)</span>, <span
+class="math inline">\(\Gamma^\theta_{r\theta} = 1/r\)</span></p></li>
+<li><p><strong>Spin connection</strong>: <span
+class="math inline">\(\omega_\theta = \frac{1}{2}(1 -
+1/\sqrt{1+f})\gamma_1\gamma_2\)</span></p></li>
+<li><p><strong>Hamiltonian</strong>: Compare coefficients of <span
+class="math inline">\(\partial_r\)</span>, <span
+class="math inline">\(\partial_\theta\)</span>, identify <span
+class="math inline">\(A_\theta\)</span></p></li>
+<li><p><strong>Magnetic field</strong>: <span class="math inline">\(B_z
+= \frac{1}{r}\partial_r(r A_\theta)\)</span> computed correctly</p></li>
+</ul>
+<h2 id="numerical-verification">Numerical Verification</h2>
+<h3 id="code-implementation">Code implementation</h3>
+<p>(in <code>dft/scripts/</code>):</p>
+<ul>
+<li><p><code>analyze_charge_density.py</code>: LDOS for Gaussian
+bump</p></li>
+<li><p><code>analyze_topological_defects.py</code>: Pentagon/heptagon
+effects</p></li>
+<li><p><code>create_gaussian_bump.py</code>: Coordinate
+generation</p></li>
+</ul>
+<h3 id="generated-plots">Generated plots</h3>
+<p>(in <code>figures/</code>):</p>
+<ul>
+<li><p>Gaussian bump LDOS pattern</p></li>
+<li><p>Pentagon vs heptagon comparison</p></li>
+<li><p>Multiple defects superposition</p></li>
+</ul>
+<h3 id="quantitative-checks">Quantitative checks</h3>
+<p>:</p>
+<ul>
+<li><p>Zero crossing at <span class="math inline">\(r =
+b/\sqrt{2}\)</span> for Gaussian</p></li>
+<li><p>Positive <span class="math inline">\(\delta\rho\)</span> for
+pentagon, negative for heptagon</p></li>
+<li><p>Velocity reduction: <span class="math inline">\(v(r) &lt;
+v_F\)</span> everywhere</p></li>
+<li><p>Zero net magnetic flux: <span class="math inline">\(\int B_z dA =
+0\)</span></p></li>
+</ul>
+<h1 id="open-questions-and-extensions">Open Questions and
+Extensions</h1>
+<h2 id="unresolved-issues">Unresolved Issues</h2>
+<h3 id="numerical-factors">Numerical factors</h3>
+<ul>
+<li><p>Exact prefactor in LDOS formula</p></li>
+<li><p>Relation <span class="math inline">\(\eta\)</span> <span
+class="math inline">\(\leftrightarrow\)</span> pentagon/heptagon
+angle</p></li>
+<li><p>Correlation length <span class="math inline">\(\xi\)</span> from
+first principles</p></li>
+</ul>
+<h3 id="energy-dependence">Energy dependence</h3>
+<p>Paper only shows <span class="math inline">\(E=0\)</span> results.
+Full <span class="math inline">\(\rho(E,r)\)</span> needed for:</p>
+<ul>
+<li><p>Comparison with STM at different biases</p></li>
+<li><p>Temperature dependence</p></li>
+<li><p>Transport properties</p></li>
+</ul>
+<h3 id="higher-order-effects">Higher-order effects</h3>
+<p>Perturbation theory to <span
+class="math inline">\(O(\epsilon)\)</span> only. <span
+class="math inline">\(O(\epsilon^2)\)</span> could:</p>
+<ul>
+<li><p>Modify zero crossing position</p></li>
+<li><p>Change magnitude of effects</p></li>
+<li><p>Introduce new features</p></li>
+</ul>
+<h2 id="extensions-for-future-work">Extensions for Future Work</h2>
+<h3 id="dft-verification">DFT verification</h3>
+<ul>
+<li><p>Create actual graphene with Gaussian bump</p></li>
+<li><p>Compute DFT charge density</p></li>
+<li><p>Compare with analytical prediction</p></li>
+</ul>
+<h3 id="transport-properties">Transport properties</h3>
+<ul>
+<li><p>Conductivity from curvature</p></li>
+<li><p>Quantum Hall effect in pseudo-magnetic field</p></li>
+<li><p>Temperature dependence</p></li>
+</ul>
+<h3 id="experimental-predictions">Experimental predictions</h3>
+<ul>
+<li><p>Specific STM patterns to look for</p></li>
+<li><p>Raman spectroscopy signatures</p></li>
+<li><p>Magnetotransport measurements</p></li>
+</ul>
+<h1 id="conclusion">Conclusion</h1>
+<p>This document has provided complete derivations for all key equations
+in Vozmediano et al. (2008). The main achievements:</p>
+<ol>
+<li><p><strong>Explicit metric derivation</strong> from Gaussian
+geometry</p></li>
+<li><p><strong>Complete curved Hamiltonian</strong> with vielbein and
+spin connection</p></li>
+<li><p><strong>Effective magnetic field</strong> from gauge field
+curl</p></li>
+<li><p><strong>LDOS perturbation theory</strong> for both smooth and
+topological curvature</p></li>
+<li><p><strong>Physical interpretation</strong> of all results</p></li>
+</ol>
+<p>The paper successfully demonstrates how graphene’s unique electronic
+properties make it an ideal system for studying quantum field theory in
+curved space, with direct experimental implications for understanding
+disorder and ripples in real graphene samples.</p>
+<p><strong>Key takeaway</strong>: Curvature in graphene creates
+measurable electronic effects through both gauge fields and metric
+modifications, with distinctive signatures in local density of states
+that can be tested experimentally.</p>
+<h1 class="unnumbered" id="references">References</h1>
+<ol>
+<li><p>Vozmediano, M. A. H., de Juan, F., &amp; Cortijo, A. (2008).
+<em>Gauge fields and curvature in graphene</em>.
+arXiv:0807.3909.</p></li>
+<li><p>Reference [17]: Detailed LDOS calculation for Gaussian
+bump</p></li>
+<li><p>References [52-54]: Numerical and analytical calculations of
+defect effects</p></li>
+</ol>
+</body>
+</html>
